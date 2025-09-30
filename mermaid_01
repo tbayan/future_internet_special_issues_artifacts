@@ -1,0 +1,84 @@
+graph TD
+    %% User Entry Point
+    User([User]) --> PrepareWallet[Prepare Wallet]
+    
+    %% Wallet Creation Flow
+    PrepareWallet --> Download[Download]
+    Download --> CreateWallet[Create Wallet]
+    CreateWallet --> MnemonicPhrase[Mnemonic Phrase]
+    
+    %% Security Methods
+    MnemonicPhrase --> SSS[Shamir's Secret Sharing]
+    MnemonicPhrase --> MultiSig[MultiSig]
+    
+    %% Wallet Types
+    CreateWallet --> Keyless[Keyless]
+    Keyless --> UseWallet[Use Wallet]
+    Keyless --> ColdWallet[Cold Wallet]
+    Keyless --> Custody[Custody]
+    
+    %% Hot Wallet Path
+    UseWallet --> HotWallet[Hot Wallet]
+    HotWallet --> DirectWalletConnect[Direct/WalletConnect]
+    
+    %% Cold Wallet Path
+    ColdWallet --> LightApp[Light App]
+    ColdWallet -.QRCode/USB/Bluetooth.-> LightApp
+    
+    %% Non-Custodial Note
+    Custody -.Non-Custodial:<br/>Cloud/MPC.-> LightApp
+    
+    %% DApp Interaction
+    DirectWalletConnect --> DApp[DApp]
+    LightApp --> DApp
+    
+    %% Web3 Layer
+    DApp --> Web3Layer[web3.js/ether.js]
+    Web3Layer --> Web3API[Web3 API]
+    
+    %% Transaction Operations
+    Web3API --> Sign[Sign*]
+    Web3API --> Approve[Approve]
+    Web3API --> IncreaseAllowance[increaseAllowance]
+    Web3API --> Transfer[Transfer]
+    Web3API --> More[...]
+    
+    %% Blockchain Connection
+    Web3API --> Blockchain[Blockchain]
+    Blockchain --> IPFS[IPFS/Arweave]
+    Blockchain --> SmartContract[Smart Contract]
+    
+    %% Backup Wallet Section
+    MnemonicPhrase --> BackupWallet[Backup Wallet]
+    BackupWallet --> Encryption{Encryption}
+    Encryption --> Cloud[Cloud]
+    Encryption --> Paper[Paper]
+    Encryption --> Device[Device]
+    Encryption --> Brain[Brain]
+    
+    %% Storage Methods
+    BackupWallet --> WithPassword[With Password]
+    BackupWallet --> Plaintext[Plaintext]
+    
+    %% Base Infrastructure
+    subgraph Base[Base Infrastructure]
+        Network[Network]
+        CDN[CDN]
+        Browser[Browser]
+        Ellipsis[...]
+        PC[PC]
+        Mobile[Mobile]
+    end
+    
+    PrepareWallet -.runs on.-> Base
+    
+    %% Styling
+    classDef walletType fill:#e1f5ff,stroke:#0066cc,stroke-width:2px
+    classDef security fill:#fff4e1,stroke:#cc8800,stroke-width:2px
+    classDef blockchain fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef operation fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    
+    class UseWallet,HotWallet,ColdWallet,Keyless walletType
+    class SSS,MultiSig,Encryption,WithPassword,Plaintext security
+    class Blockchain,IPFS,SmartContract blockchain
+    class Sign,Approve,IncreaseAllowance,Transfer operation
