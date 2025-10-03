@@ -1,0 +1,91 @@
+graph LR
+    A[Secure Web3 Development Lifecycle] --> B[Development Preparation]
+    A --> C[Development Process]
+    A --> D[Release Process]
+    A --> E[Runtime Monitoring]
+    A --> F[Security Awareness]
+    
+    B --> B1[Environment Setup]
+    B --> B2[Key Management]
+    B --> B3[Requirements Documentation]
+    
+    B1 --> B1a[.env Configuration]
+    B1 --> B1b[Public vs Private Data]
+    
+    B2 --> B2a[Hardware Wallets]
+    B2 --> B2b[Separate Dev/Prod Keys]
+    B2 --> B2c[Multi-sig for Teams]
+    
+    B3 --> B3a[Threat Models]
+    B3 --> B3b[Trust Boundaries]
+    B3 --> B3c[User Flow Mapping]
+    
+    C --> C1[Smart Contract Security]
+    C --> C2[Testing Strategy]
+    C --> C3[Front-end Security]
+    C --> C4[Infrastructure Hardening]
+    
+    C1 --> C1a[OpenZeppelin Libraries]
+    C1 --> C1b[Defensive Patterns]
+    C1 --> C1c[Access Controls]
+    
+    C2 --> C2a[Adversarial Tests]
+    C2 --> C2b[Fuzzing Tools]
+    C2 --> C2c[Edge Cases]
+    
+    C3 --> C3a[CSP Headers]
+    C3 --> C3b[Input Sanitization]
+    C3 --> C3c[Transaction Display]
+    
+    C4 --> C4a[HTTPS Configuration]
+    C4 --> C4b[Rate Limiting]
+    C4 --> C4c[Own RPC Nodes]
+    
+    D --> D1[Code Freeze]
+    D --> D2[Security Audits]
+    D --> D3[Vulnerability Assessment]
+    
+    D2 --> D2a[External Auditors]
+    D2 --> D2b[Documentation Review]
+    D2 --> D2c[Audit Reports]
+    
+    D3 --> D3a[Critical Findings]
+    D3 --> D3b[Risk Assessment]
+    D3 --> D3c[Pre-deployment Fixes]
+    
+    E --> E1[On-chain Monitoring]
+    E --> E2[Infrastructure Protection]
+    E --> E3[Bug Bounty Programs]
+    E --> E4[Incident Response]
+    
+    E1 --> E1a[Permission Changes]
+    E1 --> E1b[Fund Movement Alerts]
+    E1 --> E1c[Balance Reconciliation]
+    
+    E4 --> E4a[Emergency Procedures]
+    E4 --> E4b[Pause Mechanisms]
+    E4 --> E4c[Post-incident Analysis]
+    
+    F --> F1[Ecosystem Challenges]
+    F --> F2[User Education]
+    F --> F3[Attack Pattern Tracking]
+    F --> F4[Continuous Improvement]
+    
+    F1 --> F1a[System-level Issues]
+    F1 --> F1b[Developer Challenges]
+    F1 --> F1c[User Security]
+    
+    F2 --> F2a[Signature Verification]
+    F2 --> F2b[Phishing Detection]
+    F2 --> F2c[Social Engineering Awareness]
+    
+    F3 --> F3a[Monitor Exploits]
+    F3 --> F3b[Vulnerability Audits]
+    F3 --> F3c[Security Drills]
+
+    style A fill:#2c3e50,stroke:#34495e,stroke-width:3px,color:#fff
+    style B fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+    style C fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+    style D fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+    style E fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
+    style F fill:#3498db,stroke:#2980b9,stroke-width:2px,color:#fff
