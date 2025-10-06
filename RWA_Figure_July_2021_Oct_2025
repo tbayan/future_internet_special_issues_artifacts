@@ -2,12 +2,52 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # RWA TVL Data
-dates = ['Jul\n2021', 'Oct\n2021', 'Jan\n2022', 'Apr\n2022', 'Jul\n2022', 'Oct\n2022', 
-         'Jan\n2023', 'Apr\n2023', 'Jul\n2023', 'Oct\n2023', 'Jan\n2024', 'Apr\n2024', 
-         'Jul\n2024', 'Oct\n2024', 'Jan\n2025', 'Apr\n2025', 'Jul\n2025', 'Oct\n2025']
+dates = ['Jul\n2021', 
+         'Sept\n2021', 
+         'Oct\n2021', 
+         'Dec\n2021', 
+         'Jan\n2022', 
+         'Apr\n2022', 
+         'Jul\n2022', 
+         'Oct\n2022', 
+         'Dec\n2022',
+         'Jan\n2023', 
+         'Apr\n2023', 
+         'Jul\n2023', 
+         'Oct\n2023', 
+         'Jan\n2024', 
+         'Apr\n2024', 
+         'Jul\n2024', 
+         'Oct\n2024', 
+         'Jan\n2025', 
+         'Apr\n2025', 
+         'Jul\n2025', 
+         'Sept\n2025', 
+         'Oct\n2025']
 
-values = [0.01, 0.03, 0.08, 0.25, 0.45, 0.68, 1.1, 1.8, 2.8, 3.5, 4.2, 5.8, 
-          8.5, 11.2, 13.5, 14.8, 15.9, 16.72]
+values = [0.003, 
+          0.02, 
+          0.025,
+          0.153,
+          0.166,
+          0.145,
+          0.155,
+          0.24,
+          0.656,
+          0.757,
+          0.917,
+          2.2,
+          5.5,
+          5.6,
+          4.3,
+          3.4,
+          5.3,
+          7.1,
+          9.6,
+          11.7,
+          14,
+          16.5       
+              ]
 
 # Create figure with academic style
 plt.figure(figsize=(12, 6), facecolor='white')
