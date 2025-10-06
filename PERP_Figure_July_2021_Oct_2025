@@ -1,69 +1,83 @@
-import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import matplotlib.pyplot as plt
+import numpy as np
 
-const perpsData = [
-  { date: 'Jul 2021', volume: 8.5 },
-  { date: 'Oct 2021', volume: 12.3 },
-  { date: 'Jan 2022', volume: 18.5 },
-  { date: 'Apr 2022', volume: 15.2 },
-  { date: 'Jul 2022', volume: 9.8 },
-  { date: 'Oct 2022', volume: 7.5 },
-  { date: 'Jan 2023', volume: 11.2 },
-  { date: 'Apr 2023', volume: 14.8 },
-  { date: 'Jul 2023', volume: 16.5 },
-  { date: 'Oct 2023', volume: 19.3 },
-  { date: 'Jan 2024', volume: 22.8 },
-  { date: 'Apr 2024', volume: 28.5 },
-  { date: 'Jul 2024', volume: 35.2 },
-  { date: 'Oct 2024', volume: 42.8 },
-  { date: 'Jan 2025', volume: 38.5 },
-  { date: 'Apr 2025', volume: 45.2 },
-  { date: 'Jul 2025', volume: 52.8 },
-  { date: 'Oct 2025', volume: 34.48 }
-];
+# Perpetuals Volume Data
+dates = ['Jul\n2021',
+         'Aug\n2021' ,
+         'Sept\n2021',
+         'Oct\n2021', 
+         'Nov\n2021', 
+         'Jan\n2022', 
+         'Apr\n2022', 
+         'Jul\n2022', 
+         'Oct\n2022', 
+         'Jan\n2023', 
+         'Apr\n2023', 
+         'Jul\n2023', 
+         'Oct\n2023', 
+         'Jan\n2024', 
+         'Apr\n2024', 
+         'Jul\n2024', 
+         'Oct\n2024', 
+         'Jan\n2025', 
+         'Apr\n2025', 
+         'Jul\n2025', 
+         'Sept\n2025', 
+         'Oct\n2025']
 
-const PerpsChart = () => {
-  return (
-    <div style={{ width: '100%', backgroundColor: 'white', padding: '30px' }}>
-      <ResponsiveContainer width="100%" height={450}>
-        <BarChart data={perpsData} margin={{ top: 20, right: 50, left: 70, bottom: 70 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#cccccc" />
-          <XAxis 
-            dataKey="date" 
-            angle={-45} 
-            textAnchor="end"
-            height={90}
-            tick={{ fontSize: 13, fontFamily: 'Times New Roman, serif', fill: '#000000' }}
-          />
-          <YAxis 
-            tick={{ fontSize: 13, fontFamily: 'Times New Roman, serif', fill: '#000000' }}
-            label={{ 
-              value: 'Daily Volume (Billions USD)', 
-              angle: -90, 
-              position: 'insideLeft',
-              style: { fontSize: 14, fontFamily: 'Times New Roman, serif', fill: '#000000' }
-            }}
-            domain={[0, 60]}
-          />
-          <Tooltip 
-            formatter={(value) => `$${value.toFixed(2)}B`}
-            contentStyle={{ 
-              backgroundColor: 'white', 
-              border: '1px solid #666',
-              fontFamily: 'Times New Roman, serif',
-              fontSize: '12px'
-            }}
-          />
-          <Bar 
-            dataKey="volume" 
-            fill="#333333"
-            stroke="#000000"
-            strokeWidth={0.5}
-          />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
-  );
-};
+volumes = [0.022, 
+           0.18, 
+           1.8, 
+           8.7, 
+           2.6,
+           1.2, 
+           2.4, 
+           0.9,
+           1.19,
+           3.4,
+           0.8,
+           1,
+           1.29,
+           3,
+           9,
+           5.6,
+           6,
+           6,
+           13,
+           21,
+           56,
+           34
+           ]
 
-export default PerpsChart;
+# Create figure with academic style
+plt.figure(figsize=(12, 6), facecolor='white')
+plt.rcParams['font.family'] = 'serif'
+plt.rcParams['font.serif'] = ['Times New Roman']
+plt.rcParams['font.size'] = 12
+
+# Plot bar chart
+x_pos = np.arange(len(dates))
+plt.bar(x_pos, volumes, color='#333333', edgecolor='black', linewidth=0.5, width=0.8)
+
+# Grid
+plt.grid(True, linestyle='--', alpha=0.5, color='gray', axis='y')
+
+# Labels and ticks
+plt.xticks(x_pos, dates, rotation=45, ha='right')
+plt.ylabel('Daily Volume (Billions USD)', fontsize=13)
+plt.ylim(0, 60)
+
+# Remove top and right spines
+ax = plt.gca()
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+
+# Tight layout
+plt.tight_layout()
+
+# Save figure
+plt.savefig('perps_volume_chart.png', dpi=300, bbox_inches='tight', facecolor='white')
+print("Perpetuals chart saved as 'perps_volume_chart.png'")
+
+# Display
+plt.show()
