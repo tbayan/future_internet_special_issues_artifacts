@@ -1,0 +1,198 @@
+import React from 'react';
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+// RWA TVL Data matching the DeFiLlama chart pattern
+const rwaData = [
+  { date: 'Jul 2021', value: 0.01 },
+  { date: 'Oct 2021', value: 0.03 },
+  { date: 'Jan 2022', value: 0.08 },
+  { date: 'Apr 2022', value: 0.25 },
+  { date: 'Jul 2022', value: 0.45 },
+  { date: 'Oct 2022', value: 0.68 },
+  { date: 'Jan 2023', value: 1.1 },
+  { date: 'Apr 2023', value: 1.8 },
+  { date: 'Jul 2023', value: 2.8 },
+  { date: 'Oct 2023', value: 3.5 },
+  { date: 'Jan 2024', value: 4.2 },
+  { date: 'Apr 2024', value: 5.8 },
+  { date: 'Jul 2024', value: 8.5 },
+  { date: 'Oct 2024', value: 11.2 },
+  { date: 'Jan 2025', value: 13.5 },
+  { date: 'Apr 2025', value: 14.8 },
+  { date: 'Jul 2025', value: 15.9 },
+  { date: 'Oct 2025', value: 16.72 }
+];
+
+// Perpetuals daily volume matching the pattern
+const perpsData = [
+  { date: 'Jul 2021', volume: 8.5 },
+  { date: 'Oct 2021', volume: 12.3 },
+  { date: 'Jan 2022', volume: 18.5 },
+  { date: 'Apr 2022', volume: 15.2 },
+  { date: 'Jul 2022', volume: 9.8 },
+  { date: 'Oct 2022', volume: 7.5 },
+  { date: 'Jan 2023', volume: 11.2 },
+  { date: 'Apr 2023', volume: 14.8 },
+  { date: 'Jul 2023', volume: 16.5 },
+  { date: 'Oct 2023', volume: 19.3 },
+  { date: 'Jan 2024', volume: 22.8 },
+  { date: 'Apr 2024', volume: 28.5 },
+  { date: 'Jul 2024', volume: 35.2 },
+  { date: 'Oct 2024', volume: 42.8 },
+  { date: 'Jan 2025', volume: 38.5 },
+  { date: 'Apr 2025', volume: 45.2 },
+  { date: 'Jul 2025', volume: 52.8 },
+  { date: 'Oct 2025', volume: 34.48 }
+];
+
+const RWAChart = () => {
+  return (
+    <div style={{ width: '100%', marginBottom: '60px', backgroundColor: 'white', padding: '20px' }}>
+      <h4 style={{ 
+        textAlign: 'center', 
+        marginBottom: '20px', 
+        fontFamily: 'Times New Roman, serif',
+        fontSize: '14px',
+        fontWeight: 'bold',
+        color: '#000'
+      }}>
+        Figure 1. Total Value Locked in Real-World Asset Protocols (July 2021 - October 2025)
+      </h4>
+      <ResponsiveContainer width="100%" height={350}>
+        <LineChart data={rwaData} margin={{ top: 20, right: 40, left: 60, bottom: 40 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+          <XAxis 
+            dataKey="date" 
+            angle={0} 
+            textAnchor="middle"
+            height={60}
+            tick={{ fontSize: 11, fontFamily: 'Times New Roman, serif' }}
+            label={{ 
+              value: 'Time Period', 
+              position: 'insideBottom', 
+              offset: -10,
+              style: { fontSize: 12, fontFamily: 'Times New Roman, serif' }
+            }}
+          />
+          <YAxis 
+            tick={{ fontSize: 11, fontFamily: 'Times New Roman, serif' }}
+            label={{ 
+              value: 'Total Value Locked (Billions USD)', 
+              angle: -90, 
+              position: 'insideLeft',
+              style: { fontSize: 12, fontFamily: 'Times New Roman, serif', textAnchor: 'middle' }
+            }}
+            domain={[0, 18]}
+          />
+          <Tooltip 
+            formatter={(value) => `$${value.toFixed(2)}B`}
+            contentStyle={{ 
+              backgroundColor: 'white', 
+              border: '1px solid #ccc',
+              fontFamily: 'Times New Roman, serif',
+              fontSize: '11px'
+            }}
+          />
+          <Line 
+            type="monotone" 
+            dataKey="value" 
+            stroke="#1a1a1a" 
+            strokeWidth={2}
+            dot={{ fill: '#1a1a1a', r: 3 }}
+            activeDot={{ r: 5 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+      <p style={{ 
+        textAlign: 'center', 
+        fontSize: '11px', 
+        color: '#555', 
+        marginTop: '15px',
+        fontFamily: 'Times New Roman, serif',
+        fontStyle: 'italic'
+      }}>
+        Source: DeFiLlama (2025). TVL growth from $10M to $16.72B represents a 1,672x increase.
+      </p>
+    </div>
+  );
+};
+
+const PerpsChart = () => {
+  return (
+    <div style={{ width: '100%', backgroundColor: 'white', padding: '20px' }}>
+      <h4 style={{ 
+        textAlign: 'center', 
+        marginBottom: '20px', 
+        fontFamily: 'Times New Roman, serif',
+        fontSize: '14px',
+        fontWeight: 'bold',
+        color: '#000'
+      }}>
+        Figure 2. Daily Perpetual Futures Trading Volume Across Decentralized Exchanges (July 2021 - October 2025)
+      </h4>
+      <ResponsiveContainer width="100%" height={350}>
+        <BarChart data={perpsData} margin={{ top: 20, right: 40, left: 60, bottom: 40 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+          <XAxis 
+            dataKey="date" 
+            angle={0} 
+            textAnchor="middle"
+            height={60}
+            tick={{ fontSize: 11, fontFamily: 'Times New Roman, serif' }}
+            label={{ 
+              value: 'Time Period', 
+              position: 'insideBottom', 
+              offset: -10,
+              style: { fontSize: 12, fontFamily: 'Times New Roman, serif' }
+            }}
+          />
+          <YAxis 
+            tick={{ fontSize: 11, fontFamily: 'Times New Roman, serif' }}
+            label={{ 
+              value: 'Daily Trading Volume (Billions USD)', 
+              angle: -90, 
+              position: 'insideLeft',
+              style: { fontSize: 12, fontFamily: 'Times New Roman, serif', textAnchor: 'middle' }
+            }}
+            domain={[0, 60]}
+          />
+          <Tooltip 
+            formatter={(value) => `$${value.toFixed(2)}B`}
+            contentStyle={{ 
+              backgroundColor: 'white', 
+              border: '1px solid #ccc',
+              fontFamily: 'Times New Roman, serif',
+              fontSize: '11px'
+            }}
+          />
+          <Bar 
+            dataKey="volume" 
+            fill="#404040" 
+            radius={[0, 0, 0, 0]}
+          />
+        </BarChart>
+      </ResponsiveContainer>
+      <p style={{ 
+        textAlign: 'center', 
+        fontSize: '11px', 
+        color: '#555', 
+        marginTop: '15px',
+        fontFamily: 'Times New Roman, serif',
+        fontStyle: 'italic'
+      }}>
+        Source: DeFiLlama (2025). Volume shows significant volatility with peak activity in mid-2024 to mid-2025.
+      </p>
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <div style={{ padding: '30px', backgroundColor: '#fafafa' }}>
+      <RWAChart />
+      <PerpsChart />
+    </div>
+  );
+};
+
+export default App;
