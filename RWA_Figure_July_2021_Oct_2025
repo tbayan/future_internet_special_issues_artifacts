@@ -1,71 +1,42 @@
-import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import matplotlib.pyplot as plt
+import numpy as np
 
-const rwaData = [
-  { date: 'Jul 2021', value: 0.01 },
-  { date: 'Oct 2021', value: 0.03 },
-  { date: 'Jan 2022', value: 0.08 },
-  { date: 'Apr 2022', value: 0.25 },
-  { date: 'Jul 2022', value: 0.45 },
-  { date: 'Oct 2022', value: 0.68 },
-  { date: 'Jan 2023', value: 1.1 },
-  { date: 'Apr 2023', value: 1.8 },
-  { date: 'Jul 2023', value: 2.8 },
-  { date: 'Oct 2023', value: 3.5 },
-  { date: 'Jan 2024', value: 4.2 },
-  { date: 'Apr 2024', value: 5.8 },
-  { date: 'Jul 2024', value: 8.5 },
-  { date: 'Oct 2024', value: 11.2 },
-  { date: 'Jan 2025', value: 13.5 },
-  { date: 'Apr 2025', value: 14.8 },
-  { date: 'Jul 2025', value: 15.9 },
-  { date: 'Oct 2025', value: 16.72 }
-];
+# RWA TVL Data
+dates = ['Jul\n2021', 'Oct\n2021', 'Jan\n2022', 'Apr\n2022', 'Jul\n2022', 'Oct\n2022', 
+         'Jan\n2023', 'Apr\n2023', 'Jul\n2023', 'Oct\n2023', 'Jan\n2024', 'Apr\n2024', 
+         'Jul\n2024', 'Oct\n2024', 'Jan\n2025', 'Apr\n2025', 'Jul\n2025', 'Oct\n2025']
 
-const RWAChart = () => {
-  return (
-    <div style={{ width: '100%', backgroundColor: 'white', padding: '30px' }}>
-      <ResponsiveContainer width="100%" height={450}>
-        <LineChart data={rwaData} margin={{ top: 20, right: 50, left: 70, bottom: 70 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#cccccc" />
-          <XAxis 
-            dataKey="date" 
-            angle={-45} 
-            textAnchor="end"
-            height={90}
-            tick={{ fontSize: 13, fontFamily: 'Times New Roman, serif', fill: '#000000' }}
-          />
-          <YAxis 
-            tick={{ fontSize: 13, fontFamily: 'Times New Roman, serif', fill: '#000000' }}
-            label={{ 
-              value: 'TVL (Billions USD)', 
-              angle: -90, 
-              position: 'insideLeft',
-              style: { fontSize: 14, fontFamily: 'Times New Roman, serif', fill: '#000000' }
-            }}
-            domain={[0, 18]}
-          />
-          <Tooltip 
-            formatter={(value) => `$${value.toFixed(2)}B`}
-            contentStyle={{ 
-              backgroundColor: 'white', 
-              border: '1px solid #666',
-              fontFamily: 'Times New Roman, serif',
-              fontSize: '12px'
-            }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="value" 
-            stroke="#000000" 
-            strokeWidth={2}
-            dot={{ fill: '#000000', r: 3, strokeWidth: 1 }}
-            activeDot={{ r: 5 }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  );
-};
+values = [0.01, 0.03, 0.08, 0.25, 0.45, 0.68, 1.1, 1.8, 2.8, 3.5, 4.2, 5.8, 
+          8.5, 11.2, 13.5, 14.8, 15.9, 16.72]
 
-export default RWAChart;
+# Create figure with academic style
+plt.figure(figsize=(12, 6), facecolor='white')
+plt.rcParams['font.family'] = 'serif'
+plt.rcParams['font.serif'] = ['Times New Roman']
+plt.rcParams['font.size'] = 12
+
+# Plot line chart
+plt.plot(dates, values, color='black', linewidth=2, marker='o', 
+         markersize=4, markerfacecolor='black', markeredgecolor='black')
+
+# Grid
+plt.grid(True, linestyle='--', alpha=0.5, color='gray')
+
+# Labels
+plt.ylabel('TVL (Billions USD)', fontsize=13)
+plt.ylim(0, 18)
+
+# Remove top and right spines for cleaner look
+ax = plt.gca()
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+
+# Tight layout
+plt.tight_layout()
+
+# Save figure
+plt.savefig('rwa_tvl_chart.png', dpi=300, bbox_inches='tight', facecolor='white')
+print("RWA chart saved as 'rwa_tvl_chart.png'")
+
+# Display
+plt.show()
