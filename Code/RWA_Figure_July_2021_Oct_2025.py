@@ -49,7 +49,7 @@ values = [0.003,
           16.5       
               ]
 
-# Create figure with academic style
+
 plt.figure(figsize=(12, 6), facecolor='white')
 plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman']
@@ -66,7 +66,7 @@ plt.grid(True, linestyle='--', alpha=0.5, color='gray')
 plt.ylabel('TVL (Billions USD)', fontsize=13)
 plt.ylim(0, 18)
 
-# Remove top and right spines for cleaner look
+
 ax = plt.gca()
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)

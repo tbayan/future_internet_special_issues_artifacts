@@ -49,7 +49,6 @@ volumes = [0.022,
            34
            ]
 
-# Create figure with academic style
 plt.figure(figsize=(12, 6), facecolor='white')
 plt.rcParams['font.family'] = 'serif'
 plt.rcParams['font.serif'] = ['Times New Roman']
@@ -67,7 +66,6 @@ plt.xticks(x_pos, dates, rotation=45, ha='right')
 plt.ylabel('Daily Volume (Billions USD)', fontsize=13)
 plt.ylim(0, 60)
 
-# Remove top and right spines
 ax = plt.gca()
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)

@@ -3,7 +3,6 @@ import numpy as np
 from datetime import datetime
 import matplotlib.dates as mdates
 
-# Data extracted from the chart
 dates = [
     '2009-01', '2010-01', '2011-01', '2012-01', '2013-01', '2014-01', 
     '2015-01', '2016-01', '2017-01', '2017-06', '2018-01', '2018-06',
@@ -18,17 +17,16 @@ developers = [
     12000, 14000, 17500, 22000, 23343
 ]
 
-# Convert dates to datetime objects
 date_objects = [datetime.strptime(d, '%Y-%m') for d in dates]
 
-# Create the plot
+
 fig, ax = plt.subplots(figsize=(14, 6))
 
-# Plot the data
+
 ax.plot(date_objects, developers, linewidth=2.5, color='#5DADE2', marker='o', 
         markersize=4, markerfacecolor='#5DADE2', markeredgewidth=0)
 
-# Formatting
+
 ax.set_xlabel('Year', fontsize=12, fontweight='bold')
 ax.set_ylabel('Developers', fontsize=12, fontweight='bold')
 ax.set_title('All Crypto Monthly Active Developers Since 2009', 
