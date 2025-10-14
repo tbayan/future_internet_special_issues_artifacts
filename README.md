@@ -9,6 +9,11 @@ This repository contains the supporting materials for the review paper submitted
 - **/data/** – Small example data files (CSV/JSON) used for the visualizations.  
 - **/docs/** – Citation file, reference mapping, and license information.
 
+## Data Availability Statement: 
+All data used was already public. We have added a link to
+a github repo containing scripts etc. that reproduce the
+figures in the paper.
+
 ## Usage
 To reproduce or view the figures:
 
@@ -18,3 +23,5 @@ mmdc -i diagrams/mermaid/fig1_architecture_layers.mmd -o fig1_architecture_layer
 
 # Run Python chart
 python diagrams/python/fig4_research_trends.py
+
+
